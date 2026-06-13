@@ -1,6 +1,6 @@
 "use strict";
 
-import { fetchProducts, fetchCategories } from "./functions";
+import { fetchProducts, fetchCategories } from "./functions.js";
 
 /**
  * Muestra el mensaje toast interactivo eliminando la clase `hidden`
@@ -50,7 +50,7 @@ let renderProducts = () => {
         let container = document.getElementById("products-container");
         container.innerHTML = ``;
 
-        let products = result.body.slice(6);
+        let products = result.body.slice(0, 6);
 
         products.forEach(product => {
 

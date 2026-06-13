@@ -1,6 +1,15 @@
 "use strict";
 
-let fetchProducts = (url) => {
+/**
+ * Realiza una petición HTTP para obtener productos en formato JSON.
+ *
+ * @param {string} url - URL del recurso a consultar.
+ * @returns {Promise<{success: boolean, body: any}>}
+ * Objeto con el resultado de la operación:
+ * - `success`: indica si la petición fue exitosa.
+ * - `body`: contiene los datos recibidos o el mensaje de error.
+ */
+const fetchProducts = (url) => {
 
     return fetch(url)
         .then(response => {
@@ -24,6 +33,16 @@ let fetchProducts = (url) => {
         });
 }
 
+/**
+ * Realiza una petición HTTP para obtener categorías en formato XML.
+ *
+ * @async
+ * @param {string} url - URL del recurso XML a consultar.
+ * @returns {Promise<{success: boolean, body: Document|string}>}
+ * Objeto con el resultado de la operación:
+ * - `success`: indica si la petición fue exitosa.
+ * - `body`: contiene un objeto `Document` XML parseado o el mensaje de error.
+ */
 let fetchCategories = async (url) => {
 
     try {
