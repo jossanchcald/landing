@@ -1,7 +1,15 @@
 "use strict";
 
-import { fetchProducts } from "./functions.js";
+import { fetchProducts, fetchCategories } from "./functions";
 
+/**
+ * Muestra un elemento toast (notificación) en la interfaz añadiendo la clase 'md:block'.
+ * Busca el elemento con id 'toast-interactive' y lo hace visible.
+ * Si el elemento no existe, la función no hace nada.
+ *
+ * @function showToast
+ * @returns {void}
+ */
 const showToast = () => {
     const toast = document.getElementById('toast-interactive');
 
@@ -10,6 +18,14 @@ const showToast = () => {
     }
 };
 
+/**
+ * Configura un evento de clic en el elemento de demostración que abre un video en YouTube.
+ * Busca el elemento con id 'demo' y le agrega un listener para abrir un video en una nueva pestaña.
+ * Si el elemento no existe, la función no hace nada.
+ *
+ * @function showVideo
+ * @returns {void}
+ */
 const showVideo = () => {
     const demo = document.getElementById('demo');
 
@@ -20,6 +36,15 @@ const showVideo = () => {
     }
 };
 
+/**
+ * Obtiene y renderiza los primeros 6 productos en el contenedor 'products-container'.
+ * Realiza una solicitud para obtener el listado de productos, los procesa y genera
+ * el HTML correspondiente con información de precio, imagen y enlace a Amazon.
+ * Los títulos se truncan a 20 caracteres si es necesario.
+ *
+ * @function renderProducts
+ * @returns {void}
+ */
 const renderProducts = () => {
     fetchProducts("https://data-dawm.github.io/datum/reseller/products.json")
         .then(result => {
@@ -64,8 +89,53 @@ const renderProducts = () => {
         });
 }
 
+/**
+ * Obtiene y renderiza las categorías disponibles en un elemento select.
+ * Realiza una solicitud para obtener el listado de categorías en XML, las procesa
+ * y genera opciones HTML en el dropdown con id 'categories'.
+ * Muestra un mensaje de error en una alerta si algo falla.
+ *
+ * @async
+ * @function renderCategories
+ * @returns {Promise<void>}
+ */
+let renderCategories = async () => {
+
+    try {
+        const result = await fetchCategories('https://data-dawm.github.io/datum/reseller/categories.xml');
+
+        if (result.success) {
+            let container = document.getElementById("categories");
+            container.innerHTML = `<option selected disabled>Seleccione una categoría</option>`;
+
+            let categoriesXML = result.body;
+            let categories = categoriesXML.getElementsByTagName("category");
+
+            for (let category of categories) {
+
+                let categoryHTML = `<option value="[ID]">[NAME]</option>`;
+
+                const id = category.getElementsByTagName("id")[0].textContent;
+                const name = category.getElementsByTagName("name")[0].textContent;
+
+                categoryHTML = categoryHTML.replaceAll('[ID]', id);
+                categoryHTML = categoryHTML.replaceAll('[NAME]', name);
+
+                container.innerHTML += categoryHTML;
+            }
+
+        } else {
+            throw new Error(result.body);
+        }
+
+    } catch (error) {
+        alert(error.message);
+    }
+}
+
 (() => {
     showToast();
     showVideo();
     renderProducts();
+    renderCategories();
 })();
