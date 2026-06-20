@@ -312,13 +312,13 @@
    
   myBacktotop();
   myPreloader();
-  mySticky();
   myDropdown();
   myMobile();
   myOpen();
-  myLightbox();
-  mySplidejs();
-  mySplidevideo();
+  // myLightbox(); No se usa
+  // mySplidejs(); Seccion de America no lleva carousel
+  // mySplidevideo(); Seccion de America no lleva carousel
   myCustom();
+  // mySticky(); No se usa (publicidad)
 
 })();
