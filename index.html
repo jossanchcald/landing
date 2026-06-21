@@ -108,10 +108,10 @@ License: You must have a valid license from official store to legally use the th
                   <a class="block py-3 px-6 border-b-2 border-transparent" href="#noticias_xbox">Noticias Xbox</a>
                 </li>
                 <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#">Noticias PlayStation</a>
+                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#noticias_playstation">Noticias PlayStation</a>
                 </li>
                 <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#">Novedades</a>
+                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#novedades">Novedades</a>
                 </li>
                 <!-- No se usaran mas Elementos en el Menu
                 <li class="relative border-l border-gray-800 hover:bg-gray-900">
@@ -911,11 +911,107 @@ License: You must have a valid license from official store to legally use the th
       </div>
     </div>
 
-    <!-- block news -->
+    <div class="bg-gray-100 py-12">
+      <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+        
+        <div class="mx-auto text-center lg:w-2/3">
+          <h2 id="novedades" class="text-2xl font-bold text-gray-800">
+            Iniciar sesión para nuestra Newsletter
+          </h2>
+
+          <p class="mt-4 text-gray-700">
+            ¡Entérate de las últimas noticias, actualizaciones de videojuegos y cambios que se producen en la comunidad gaming!
+          </p>
+        </div>
+        <form action="#" class="mx-auto mt-6 lg:w-1/2">
+          <div>
+            <div class="max-w-full w-full px-2 pb-3">
+              <label for="usuario" class="sr-only">
+                Nombre de usuario
+              </label>
+              <input
+                type="text"
+                id="usuario"
+                name="usuario"
+                placeholder="Ingrese su nombre de usuario"
+                class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
+              >
+            </div>
+            <div class="max-w-full w-full px-2 pb-3">
+              <label for="email" class="sr-only">
+                Correo electrónico
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ingrese su correo electrónico"
+                class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
+              >
+            </div>
+            <div class="max-w-full w-full px-2 pb-3">
+              <fieldset class="border border-gray-300 rounded p-4">
+                <legend class="px-2 font-semibold text-gray-800">
+                  Opciones de interés
+                </legend>
+                <div class="flex flex-col gap-2 mt-2">
+                  <div class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="steam"
+                      name="intereses[]"
+                      value="steam"
+                    >
+                    <label for="steam">Noticias Steam</label>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="nintendo"
+                      name="intereses[]"
+                      value="nintendo"
+                    >
+                    <label for="nintendo">Noticias Nintendo</label>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="xbox"
+                      name="intereses[]"
+                      value="xbox"
+                    >
+                    <label for="xbox">Noticias Xbox</label>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      id="playstation"
+                      name="intereses[]"
+                      value="playstation"
+                    >
+                    <label for="playstation">Noticias PlayStation</label>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="max-w-full w-full px-2">
+              <button
+                type="submit"
+                class="w-full py-3 px-4 font-bold text-white bg-gray-800 border border-transparent rounded hover:bg-gray-900 focus:outline-none"
+              >
+                Suscribirse
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- block news
     <div class="bg-gray-50 py-6">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div class="flex flex-row flex-wrap">
-          <!-- post -->
+          post
           <div class="flex-shrink max-w-full w-full lg:w-2/3 overflow-hidden">
             <div class="w-full py-3">
               <h2 class="text-gray-800 text-2xl font-bold">
@@ -925,17 +1021,17 @@ License: You must have a valid license from official store to legally use the th
             <div class="flex flex-row flex-wrap -mx-3">
               <div class="flex-shrink max-w-full w-full px-3 pb-5">
                 <div class="relative hover-img max-h-98 overflow-hidden">
-                  <!--thumbnail-->
+                  thumbnail
                   <a href="#">
                     <img class="max-w-full w-full mx-auto h-auto" src="src/img/dummy/img15.jpg" alt="Image description">
                   </a>
                   <div class="absolute px-5 pt-8 pb-5 bottom-0 w-full bg-gradient-cover">
-                    <!--title-->
+                    title
                     <a href="#">
                       <h2 class="text-3xl font-bold capitalize text-white mb-3">Amazon Shoppers Are Ditching Designer Belts for This Best-Selling</h2>
                     </a>
                     <p class="text-gray-100 hidden sm:inline-block">This is a wider card with supporting text below as a natural lead-in to additional content. This very helpfull for generate default content..</p>                                                  
-                    <!-- author and date -->
+                    author and date
                     <div class="pt-2">
                       <div class="text-gray-100"><div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>Europe</div>
                     </div>
@@ -1029,7 +1125,7 @@ License: You must have a valid license from official store to legally use the th
               </div>
             </div>
           </div>
-          <!-- sidebar -->
+          sidebar
           <div class="flex-shrink max-w-full w-full lg:w-1/3 lg:pr-8 lg:pt-14 lg:pb-8 order-first">
             <div class="w-full bg-white">
               <div class="mb-6">
@@ -1067,8 +1163,7 @@ License: You must have a valid license from official store to legally use the th
           </div>
         </div>
       </div>
-    </div>
-
+    </div> -->
   </main><!-- end main -->
 
   <!-- =========={ FOOTER }==========  -->
