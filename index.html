@@ -15,7 +15,7 @@ License: You must have a valid license from official store to legally use the th
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Title  -->
-  <title>Tailwind News Template | Tailnews</title>
+  <title>The Daily Respawn | Tu reset diario del mundo gamer</title>
   <meta name="description" content="Tailwind CSS News Template">
 
   <!-- Development css -->
@@ -28,15 +28,16 @@ License: You must have a valid license from official store to legally use the th
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
 
   <!-- Favicon  -->
-  <link rel="icon" href="src/img/favicon.jpg">
+  <link rel="icon" href="src/img/favicon.png">
 </head>
+
 <body class="text-gray-700 pt-9 sm:pt-10">
   <!-- ========== { HEADER }==========  -->
   <header class="fixed top-0 left-0 right-0 z-50">
      <nav class="bg-black">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
           <div class="flex justify-between">
-            <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">Tailnews</div>
+            <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">The Daily Respawn</div>
             
             <div class="flex flex-row">
               <!-- nav menu -->
@@ -260,12 +261,55 @@ License: You must have a valid license from official store to legally use the th
       </div>
     </div>
 
-    <!-- hero big grid -->
+    <!-- Carrousel propio -->
     <div class="bg-white py-6">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
-        <!-- big grid 1 -->
+
+        <!-- Style the bar as you like -->
+        <style>
+          .my-slider-progress {
+            background: #ccc;
+          }
+          
+          .my-slider-progress-bar {
+            background: greenyellow;
+            height: 2px;
+            transition: width 400ms ease;
+            width: 0;
+          }
+        </style>
+
+        <div class="splide">
+          <div class="splide__track">
+            <ul class="splide__list">
+              <li class="splide__slide">Slide 01</li>
+              ...
+            </ul>
+          </div>
+          
+          <!-- Add the progress bar element -->
+          <div class="my-slider-progress">
+            <div class="my-slider-progress-bar"></div>
+          </div>
+        </div>
+
+        <script>
+          var splide = new Splide( '.splide' );
+          var bar    = splide.root.querySelector( '.my-carousel-progress-bar' );
+          
+          // Updates the bar width whenever the carousel moves:
+          splide.on( 'mounted move', function () {
+            var end  = splide.Components.Controller.getEnd() + 1;
+            var rate = Math.min( ( splide.index + 1 ) / end, 1 );
+            bar.style.width = String( 100 * rate ) + '%';
+          } );
+          
+          splide.mount();
+        </script>
+
+        <!-- Elementos default 
         <div class="flex flex-row flex-wrap">
-          <!--Start left cover-->
+          <!--Start left cover
           <div class="flex-shrink max-w-full w-full lg:w-1/2 pb-1 lg:pb-0 lg:pr-1">
             <div class="relative hover-img max-h-98 overflow-hidden">
               <a href="#">
@@ -283,7 +327,7 @@ License: You must have a valid license from official store to legally use the th
             </div>
           </div>
 
-          <!--Start box news-->
+          <!--Start box news
           <div class="flex-shrink max-w-full w-full lg:w-1/2">
             <div class="box-one flex flex-row flex-wrap">
               <article class="flex-shrink max-w-full w-full sm:w-1/2">
@@ -348,7 +392,8 @@ License: You must have a valid license from official store to legally use the th
               </article>
             </div>
           </div>
-        </div>
+        </div> 
+        -->
       </div>
     </div>
 
@@ -625,13 +670,14 @@ License: You must have a valid license from official store to legally use the th
     </div>
 
     <!-- block news -->
-    <div class="bg-white py-6">
+    <!-- NOTICIAS XBOX -->
+    <div id="noticias_xbox" class="bg-white py-6">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div class="flex flex-row flex-wrap">
           <div class="flex-shrink max-w-full w-full overflow-hidden">
             <div class="w-full py-3">
               <h2 class="text-gray-800 text-2xl font-bold">
-                <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Africa
+                <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>XBOX
               </h2>
             </div>
             <div class="flex flex-row flex-wrap -mx-3">
@@ -754,7 +800,8 @@ License: You must have a valid license from official store to legally use the th
     </div>
 
     <!-- block news -->
-    <div class="bg-gray-50 py-6">
+    <!-- NOTICIAS PLAYSTATION -->
+    <div id="noticias_playstation" class="bg-gray-50 py-6">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         <div class="flex flex-row flex-wrap">
           <!-- Left -->
@@ -911,6 +958,7 @@ License: You must have a valid license from official store to legally use the th
       </div>
     </div>
 
+    <!-- SECCION DE LA NEWSLETTER-->
     <div class="bg-gray-100 py-12">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
         
@@ -1172,12 +1220,12 @@ License: You must have a valid license from official store to legally use the th
     <div id="footer-content" class="relative pt-8 xl:pt-16 pb-6 xl:pb-12">
       <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2 overflow-hidden">
         <div class="flex flex-wrap flex-row lg:justify-between -mx-3">
-          <div class="flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
+          <div id="contenedor-primer-bloque-footer" class="ml-8 flex-shrink max-w-full w-full lg:w-2/5 px-3 lg:pr-16">
             <div class="flex items-center mb-2">
-              <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2">TailNews</span>
-              <!-- <img src="src/img-min/logo.png" alt="LOGO"> -->
+              <span class="text-3xl leading-normal mb-2 font-bold text-gray-100 mt-2 mr-2">The Daily Respawn</span>
+              <img src="src/img/favicon.png" alt="LOGO">
             </div>
-            <p>Tailwind News Template for build great newspapper, magazine and news portal.</p>
+            <p>Tu reset diario del mundo gamer.</p>
             <ul class="space-x-3 mt-6 mb-6 Lg:mb-0">
               <!--facebook-->
               <li class="inline-block">
@@ -1209,6 +1257,9 @@ License: You must have a valid license from official store to legally use the th
               </li><!--end instagram-->
             </ul>
           </div>
+
+          
+          <!-- Enlaces a otras paginas del sitio
           <div class="flex-shrink max-w-full w-full lg:w-3/5 px-3">
             <div class="flex flex-wrap flex-row">
               <div class="flex-shrink max-w-full w-1/2 md:w-1/4 mb-6 lg:mb-0">
@@ -1250,6 +1301,7 @@ License: You must have a valid license from official store to legally use the th
               </div>
             </div>
           </div>
+          -->
         </div>
       </div>
     </div>
@@ -1259,7 +1311,7 @@ License: You must have a valid license from official store to legally use the th
       <div class="py-4 border-t border-gray-200 border-opacity-10">
         <div class="row">
           <div class="col-12 col-md text-center">
-            <p class="d-block my-3 text-center">All rights reserved by <a href="https://aribudin.gumroad.com/" target="_blank"class="font-bold text-white">Ari Budin</a> • Distributed by <a href="https://themewagon.com/" target="_blank"class="font-bold text-white">ThemeWagon</a></p>
+            <p class="d-block my-3 text-center">Todos los derechos reservados a <a href="https://github.com/JaredB-Dev" target="_blank" class="font-bold text-white">Jared Beltrán</a> y <a href="https://github.com/jossanchcald" target="_blank" class="font-bold text-white">Josué Sánchez</a> • Distribuido por <a href="https://micomisariato.com/" target="_blank"class="font-bold text-white">Mi comisariato</a></p>
           </div>
         </div>
       </div>
