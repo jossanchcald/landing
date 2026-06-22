@@ -88,6 +88,25 @@ let mostrarNoticiasNintendo = async () => {
     }
 };
 
+let mostrarNoticiasXbox = async () => {
+    try {
+        let noticias = await obtenerArregloNoticias();
+        noticias = noticias.filter(noticia => noticia.categoria === "Xbox");
+
+        let container_noticias_xbox = document.getElementById("container_noticias_xbox");
+        container_noticias_xbox.innerText = ``;
+
+        let containerHTML = "";
+        for (const noticia of noticias) {
+            containerHTML += plantillaLiteralNoticiaXbox(noticia);
+        }
+        container_noticias_xbox.innerHTML = containerHTML;
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
 let plantillaLiteralNoticias = (noticia) => {
     return `
         <div class="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
@@ -161,9 +180,33 @@ let plantillaLiteralNoticiaBgWhite = (noticia) => {
         </div>`;
 }
 
+let plantillaLiteralNoticiaXbox = (noticia) => {
+    return `
+        <div class="flex-shrink max-w-full w-full sm:w-1/3 lg:w-1/4 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+            <div class="flex flex-row sm:block hover-img">
+                <a href="#">
+                    <img class="rounded-md max-w-full w-full mx-auto" src="/src/img/noticias/${noticia.imagen}" alt="${noticia.titulo}">
+                </a>
+                <div class="py-0 sm:py-3 pl-3 sm:pl-0">
+                    <h3 class="text-lg font-bold leading-tight mb-2">
+                        <a href="#">${noticia.titulo}</a>
+                    </h3>
+                    <p class="hidden md:block text-gray-600 leading-tight mb-1">
+                        ${noticia.descripcion}
+                    </p>
+                    <span class="text-gray-500">
+                        <span class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                        ${noticia.fecha}
+                    </span>
+                </div>
+            </div>
+        </div>`;
+};
+
 (() => {
     mostrarNoticiasSteam();
     mostrarNoticiasNintendo();
+    mostrarNoticiasXbox();
 })();
 
 export {obtenerArregloNoticiasCarousel}

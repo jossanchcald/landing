@@ -7,6 +7,7 @@ const imagenesCarousel = import.meta.glob('/src/img/carousel/*.{jpg,png,jpeg,web
     eager: true,
     import: 'default'
 });
+
 // Convierte el objeto en un array ordenado por la ruta (car1, car2, car3...)
 const rutasOrdenadas = Object.keys(imagenesCarousel).sort();
 const arregloImagenes = rutasOrdenadas.map(ruta => imagenesCarousel[ruta]);
@@ -16,6 +17,7 @@ const plantillaSlideNoticia = (noticia, index) => {
 
     return `
         <li class="splide__slide">
+        <a href="" class="relative h-full w-full overflow-hidden block cursor-pointer">
         <div class="relative h-full w-full overflow-hidden">
             <img src="${srcImagen}" alt="${noticia.titulo}" class="absolute inset-0 w-full h-full object-cover">
             
@@ -34,6 +36,7 @@ const plantillaSlideNoticia = (noticia, index) => {
             <span class="text-gray-400 text-xs">${noticia.fecha}</span>
             </div>
         </div>
+        </a>
         </li>
     `;
 };
