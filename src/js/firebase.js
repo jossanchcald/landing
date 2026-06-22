@@ -16,7 +16,6 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 let obtenerArregloNoticias = async () => {
-
     try {
         const snapshot = await get(
             ref(database, "noticias")
@@ -26,6 +25,22 @@ let obtenerArregloNoticias = async () => {
             return Object.values(snapshot.val());
         } else {
             throw new Error("No encuentra base de datos noticias");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+let obtenerArregloNoticiasCarousel = async () => {
+    try {
+        const snapshot = await get(
+            ref(database, "carousel")
+        );
+
+        if (snapshot.exists()) {
+            return Object.values(snapshot.val());
+        } else {
+            throw new Error("No se ncuentra base de datos carousel");
         }
     } catch (error) {
         console.log(error);
@@ -150,3 +165,5 @@ let plantillaLiteralNoticiaBgWhite = (noticia) => {
     mostrarNoticiasSteam();
     mostrarNoticiasNintendo();
 })();
+
+export {obtenerArregloNoticiasCarousel}

@@ -135,15 +135,13 @@
 /* splidejs */
 .splide__container {
     box-sizing: border-box;
-    position: relative
+    position: relative;
 }
 .splide__list {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     display: flex;
     height: 100%;
-    margin: 0 !important;
-    padding: 0 !important
 }
 .splide.is-initialized:not(.is-active) .splide__list {
     display: block
@@ -154,34 +152,33 @@
     flex-wrap: wrap;
     justify-content: center;
     margin: 0;
-    pointer-events: none
+    pointer-events: none;
 }
 .splide__pagination li {
     display: inline-block;
     line-height: 1;
     list-style-type: none;
     margin: 0;
-    pointer-events: auto
+    pointer-events: auto;
 }
 .splide__progress__bar {
-    width: 0
+    width:max-content;
 }
 .splide {
     position: relative;
-    visibility: hidden
+    visibility: hidden;
 }
 .splide.is-initialized,
 .splide.is-rendered {
-    visibility: visible
+    visibility: visible;
 }
 .splide__slide {
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     box-sizing: border-box;
     flex-shrink: 0;
-    list-style-type: none !important;
     margin: 0;
-    position: relative
+    position: relative;
 }
 .splide__slide img {
     vertical-align: bottom
@@ -356,12 +353,14 @@
     background: #ccc;
     height: 3px
 }
+
 .splide__slide {
     -webkit-tap-highlight-color: transparent
 }
 .splide__slide:focus {
     outline: 0
 }
+
 @supports(outline-offset:-3px) {
     .splide__slide:focus-visible {
         outline: 3px solid #0bf;
@@ -1239,4 +1238,10 @@ iframe.wait-autoplay {
         background: #000;
     }
 }
+
+
+/* CSS Carousel Propio */
+
+
+
 /*! purgecss end ignore */

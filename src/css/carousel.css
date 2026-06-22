@@ -1,9 +1,9 @@
-#my-slider-progress {
+.my-slider-progress {
   background: #ccc;
 }
   
-#my-slider-progress-bar {
-  background: greenyellow;
+.my-slider-progress-bar {
+  background: rgb(0, 145, 255);
   height: 2px;
   transition: width 400ms ease;
   width: 0;
