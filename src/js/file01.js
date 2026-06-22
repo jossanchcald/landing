@@ -1,5 +1,6 @@
 "use strict";
 
+import { saveVote } from "./firebase";
 import { fetchProducts, fetchCategories } from "./functions";
 
 /**
@@ -133,9 +134,22 @@ let renderCategories = async () => {
     }
 }
 
+
+let enableForm = async () => {
+    const formVoting = document.getElementById('form_voting');
+    formVoting.addEventListener("submit", async (evento) => {
+        evento.preventDefault();
+
+        const selectProduct = document.getElementById('select_product');
+        const respuesta = await saveVote(selectProduct.value);
+        alert(respuesta.message);
+    })
+}
+
 (() => {
     showToast();
     showVideo();
     renderProducts();
     renderCategories();
+    enableForm();
 })();
