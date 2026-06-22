@@ -1,6 +1,7 @@
 "use strict";
 
 import { fetchProducts, fetchCategories } from "./functions.js";
+import { saveVote } from "./firebase.js";
 
 /**
  * Muestra el mensaje toast interactivo eliminando la clase `hidden`
@@ -122,7 +123,7 @@ let renderCategories = async () => {
       }
 
     } else {
-      throw new Error(`Error HTTP nose`);
+      throw new Error(result.body);
     }
 
   } catch (error) {
@@ -130,6 +131,24 @@ let renderCategories = async () => {
   }
 }
 
+const enableForm = () => {
+  const formVoto = document.getElementById("form_voting");
+
+  if (formVoto) {
+    formVoto.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const selectedProd = document.getElementById("select_product").value;
+
+      if (selectedProd) {
+        saveVote(selectedProd).then(result => {
+          alert(result.message);
+        });
+      }
+    });
+  }
+
+}
 
 /**
  * Función autoejecutable que inicializa la aplicación.
