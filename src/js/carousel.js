@@ -1,5 +1,8 @@
+import Splide from '@splidejs/splide';
+import '@splidejs/splide/dist/css/splide.min.css';
+
 var splide = new Splide('.splide');
-var bar = splide.root.querySelector('#my-slider-progress-bar'); // ojo, en tu código original dice "my-carousel-progress-bar", no coincide con la clase del HTML
+var bar = splide.root.querySelector('#my-slider-progress-bar');
 
 splide.on('mounted move', function () {
   var end = splide.Components.Controller.getEnd() + 1;
