@@ -1,7 +1,7 @@
 "use strict";
 
 import { fetchProducts, fetchCategories } from "./functions.js";
-import { saveVote } from "./firebase.js";
+import { saveVote, getVotes } from "./firebase.js";
 
 /**
  * Muestra el mensaje toast interactivo eliminando la clase `hidden`
@@ -150,6 +150,73 @@ const enableForm = () => {
 
 }
 
+const displayVotes = async () => {
+  
+  try {
+    let responseVotos = await getVotes();
+
+    if (responseVotos.status) {
+      
+      const votes = responseVotos.data;
+
+      let containerResultados = document.getElementById("results");
+
+      if (containerResultados) {
+        let inicioTablaHTML = `
+            <table class="min-w-full bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 rounded-lg">
+                <thead>
+                    <tr class="bg-gray-100 dark:bg-neutral-700 text-left text-sm font-semibold text-gray-700 dark:text-neutral-200">
+                        <th class="px-4 py-2 border-b border-gray-200 dark:border-neutral-600">Producto</th>
+                        <th class="px-4 py-2 border-b border-gray-200 dark:border-neutral-600 text-center">Total de Votos</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200 dark:divide-neutral-700 text-sm text-gray-600 dark:text-neutral-300">
+        `;
+
+        let mapaVotosProducto = new Map();
+
+        Object.values(votes).forEach((voteData) => {
+          let producto = voteData.productID;
+
+          if (mapaVotosProducto.has(producto)) {
+            let nVotos = mapaVotosProducto.get(producto)+1;
+            mapaVotosProducto.set(producto, nVotos);
+          } else {
+            mapaVotosProducto.set(producto, 1);
+          }
+          
+        });
+
+        mapaVotosProducto.forEach((totalVotos, producto) => {
+          inicioTablaHTML += `
+            <tr class="hover:bg-gray-50 dark:hover:bg-neutral-700/50 transition-colors">
+                <td class="px-4 py-2 font-medium">${producto}</td>
+                <td class="px-4 py-2 text-center font-semibold text-blue-600 dark:text-blue-400">${totalVotos}</td>
+            </tr>
+          `;
+        });
+
+        inicioTablaHTML += `
+            </tbody>
+          </table>
+        `;
+
+        containerResultados.innerHTML = inicioTablaHTML;
+      }
+    } else {
+      resultsContainer.innerHTML = `
+            <p class="text-gray-500 dark:text-neutral-400 text-sm italic py-4">
+                ${response.message}
+            </p>
+        `;
+      throw new Error(result.body);
+    }
+  } catch (error) {
+    
+  }
+  
+}
+
 /**
  * Función autoejecutable que inicializa la aplicación.
  * Muestra el toast, configura el evento para el video
@@ -162,4 +229,6 @@ const enableForm = () => {
   showVideo();
   renderProducts();
   renderCategories();
+  enableForm();
+  displayVotes();
 })();

@@ -19,16 +19,13 @@ const database = getDatabase(app);
 
 const saveVote = (productID) => {
 
-    referenciaVotos = ref(database, 'votes');
-
+    let referenciaVotos = ref(database, 'votes');
     const nuevaReferenciaVotos = push(referenciaVotos);
 
-    set(nuevaReferenciaVotos, {
+    return set(nuevaReferenciaVotos, {
         productID: productID,
         timestamp: Date.now()
-    });
-
-    return result.then(() => {
+    }).then(() => {
         return {
             status: true,
             message: "Datos enviados correctamente"
@@ -39,7 +36,30 @@ const saveVote = (productID) => {
             message: error.body
         }
     });
-
 }
 
-export {saveVote}
+const getVotes = async () => {
+
+    let referenciaVotos = ref(database, 'votes');
+
+    try {
+        let snapshot = await get(referenciaVotos);
+
+        if (!snapshot.exists()) {
+            return {
+                status: false,
+                data: "No hay datos",
+            }
+        }
+
+        return {
+            status: true,
+            data: snapshot.val(),
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export {saveVote, getVotes}
