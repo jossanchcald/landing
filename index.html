@@ -57,7 +57,7 @@ License: You must have a valid license from official store to legally use the th
                   <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_playstation">PlayStation</a>
                 </li>
                 <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#novedades">Novedades</a>
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_newsletter">Novedades</a>
                 </li>
               </ul>
 
@@ -226,103 +226,121 @@ License: You must have a valid license from official store to legally use the th
     </div>
 
     <!-- SECCION DE LA NEWSLETTER-->
-    <div id="novedades" class="bg-gray-100 py-16">
-      <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
-        
+    <div id="seccion_newsletter">
+      <!-- Estado: NO suscrito -->
+      <div id="novedades_form" class="bg-gray-100 py-16">
+        <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
+          
+          <div class="mx-auto text-center lg:w-2/3">
+            <h2 class="text-2xl font-bold text-gray-800">
+              Suscribete a nuestra newsletter
+            </h2>
+
+            <p class="mt-4 text-gray-700">
+              ¡Entérate de las últimas noticias, actualizaciones de videojuegos y cambios que se producen en la comunidad gaming!
+            </p>
+          </div>
+          <form id="newsletter_form" action="#" class="mx-auto mt-6 lg:w-1/2">
+            <div>
+              <div class="max-w-full w-full px-2 pb-3">
+                <label for="usuario" class="sr-only">
+                  Nombre de Gametag
+                </label>
+                <input
+                  type="text"
+                  id="usuario"
+                  name="usuario"
+                  placeholder="Ingrese su Gametag"
+                  minlength="3"
+                  maxlength="20"
+                  required
+                  class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
+                >
+              </div>
+              <div class="max-w-full w-full px-2 pb-3">
+                <label for="email" class="sr-only">
+                  Correo electrónico
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Ingrese su correo electrónico"
+                  required
+                  class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
+                >
+              </div>
+              <div class="max-w-full w-full px-2 pb-3">
+                <fieldset class="border border-gray-300 rounded p-4">
+                  <legend class="px-2 font-semibold text-gray-800">
+                    Opciones de interés
+                  </legend>
+                  <div class="flex flex-col gap-2 mt-2">
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="steam"
+                        name="intereses[]"
+                        value="steam"
+                      >
+                      <label for="steam">Noticias Steam</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="nintendo"
+                        name="intereses[]"
+                        value="nintendo"
+                      >
+                      <label for="nintendo">Noticias Nintendo</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="xbox"
+                        name="intereses[]"
+                        value="xbox"
+                      >
+                      <label for="xbox">Noticias Xbox</label>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="playstation"
+                        name="intereses[]"
+                        value="playstation"
+                      >
+                      <label for="playstation">Noticias PlayStation</label>
+                    </div>
+                  </div>
+                </fieldset>
+              </div>
+              <div class="max-w-full w-full px-2">
+                <button
+                  type="submit"
+                  class="w-full py-3 px-4 font-bold text-white bg-[#209CEE] border border-transparent rounded hover:bg-gray-900 focus:outline-none"
+                >
+                  Suscribirse
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div> 
+
+      <!-- Estado: YA suscrito -->
+      <div id="novedades_suscrito" class="hidden py-16">
         <div class="mx-auto text-center lg:w-2/3">
           <h2 class="text-2xl font-bold text-gray-800">
-            Suscribete a nuestra newsletter
+            ¡Ya estás suscrito, <span id="suscrito-nombre"></span>!
           </h2>
-
           <p class="mt-4 text-gray-700">
-            ¡Entérate de las últimas noticias, actualizaciones de videojuegos y cambios que se producen en la comunidad gaming!
+            Recibirás noticias de: <span id="suscrito-categorias" class="font-semibold"></span>
           </p>
+          <button type="button" id="btn-cambiar-suscripcion" class="mt-6 py-2 px-6 bg-gray-800 text-white rounded hover:bg-gray-900">
+            Cambiar mi suscripción
+          </button>
         </div>
-        <form id="newsletter_form" action="#" class="mx-auto mt-6 lg:w-1/2">
-          <div>
-            <div class="max-w-full w-full px-2 pb-3">
-              <label for="usuario" class="sr-only">
-                Nombre de Gametag
-              </label>
-              <input
-                type="text"
-                id="usuario"
-                name="usuario"
-                placeholder="Ingrese su Gametag"
-                minlength="3"
-                maxlength="20"
-                required
-                class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
-              >
-            </div>
-            <div class="max-w-full w-full px-2 pb-3">
-              <label for="email" class="sr-only">
-                Correo electrónico
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Ingrese su correo electrónico"
-                required
-                class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
-              >
-            </div>
-            <div class="max-w-full w-full px-2 pb-3">
-              <fieldset class="border border-gray-300 rounded p-4">
-                <legend class="px-2 font-semibold text-gray-800">
-                  Opciones de interés
-                </legend>
-                <div class="flex flex-col gap-2 mt-2">
-                  <div class="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="steam"
-                      name="intereses[]"
-                      value="steam"
-                    >
-                    <label for="steam">Noticias Steam</label>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="nintendo"
-                      name="intereses[]"
-                      value="nintendo"
-                    >
-                    <label for="nintendo">Noticias Nintendo</label>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="xbox"
-                      name="intereses[]"
-                      value="xbox"
-                    >
-                    <label for="xbox">Noticias Xbox</label>
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      id="playstation"
-                      name="intereses[]"
-                      value="playstation"
-                    >
-                    <label for="playstation">Noticias PlayStation</label>
-                  </div>
-                </div>
-              </fieldset>
-            </div>
-            <div class="max-w-full w-full px-2">
-              <button
-                type="submit"
-                class="w-full py-3 px-4 font-bold text-white bg-[#209CEE] border border-transparent rounded hover:bg-gray-900 focus:outline-none"
-              >
-                Suscribirse
-              </button>
-            </div>
-          </div>
-        </form>
       </div>
     </div>
   </main><!-- end main -->
@@ -442,9 +460,10 @@ License: You must have a valid license from official store to legally use the th
   <!--Vendor js-->
   
   <!-- Start development js -->
-  <script src="src/js/theme.js"></script>
+  <script src="/src/js/theme.js"></script>
   <script src="./src/js/firebase.js" type="module"></script>
   <script src="./src/js/carousel.js" type="module"></script>
+  <script src="/src/js/localStorage.js"></script>
   <!-- End development js -->
 
   <!-- Production js -->

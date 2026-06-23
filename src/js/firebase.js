@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getDatabase, ref, set, push, get, child } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
-
+import { mostrarSeccionSegunSuscripcion } from './localStorage';
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -278,6 +278,24 @@ let plantillaLiteralNoticiaPS = (noticia) => {
 let registrarUsuario = () => {
     const formulario = document.getElementById("newsletter_form");
 
+    document.getElementById('btn-cambiar-suscripcion').addEventListener('click', () => {
+        const datos = JSON.parse(localStorage.getItem('suscripcion') || 'null');
+    
+        if (datos) {
+          // Prellenar campos de texto
+          document.getElementById('usuario').value = datos.usuario;
+          document.getElementById('email').value = datos.email;
+      
+          // Desmarcar todos los checkboxes primero (por si cambiaron antes)
+          document.querySelectorAll('input[name="intereses[]"]').forEach(checkbox => {
+            checkbox.checked = datos.intereses.includes(checkbox.value);
+          });
+        }
+      
+        formState.classList.remove('hidden');
+        suscritoState.classList.add('hidden')
+    });
+
     formulario.addEventListener(
         "submit",
         registrarSuscriptor
@@ -294,11 +312,8 @@ async function registrarSuscriptor(evento) {
     const intereses = datos.getAll("intereses[]");
 
     if (intereses.length === 0) {
-
         alert("Seleccione al menos un interés");
-
         return;
-
     }
 
     const suscriptor = {
@@ -314,6 +329,9 @@ async function registrarSuscriptor(evento) {
         );
 
         alert("Suscripción realizada correctamente");
+
+        localStorage.setItem('suscripcion', JSON.stringify({ usuario, email, intereses }));
+        mostrarSeccionSegunSuscripcion();
         evento.target.reset();
     } catch (error) {
 

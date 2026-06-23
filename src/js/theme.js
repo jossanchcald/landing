@@ -300,7 +300,6 @@
   // Custom JS
   const myCustom = function () {
     
-    // insert your javascript in here
 
   }
 
@@ -316,8 +315,8 @@
   myMobile();
   myOpen();
   // myLightbox(); No se usa
-  // mySplidejs(); Seccion de America no lleva carousel
-  // mySplidevideo(); Seccion de America no lleva carousel
+  // mySplidejs(); Seccion no lleva carousel
+  // mySplidevideo(); Seccion no lleva carousel
   myCustom();
   // mySticky(); No se usa (publicidad)
 
