@@ -23,8 +23,24 @@
     margin-right: 0.5rem;
 }
 /*navbar*/
-.navbar > li.active > a, .navbar > li:hover > a {
-	border-color: #ce2626;
+.steam:hover > a,
+.steam.active > a {
+    border-color: #1B2838;
+}
+
+.nintendo:hover > a,
+.nintendo.active > a {
+    border-color: #E60012;
+}
+
+.xbox:hover > a,
+.xbox.active > a {
+    border-color: #107C10;
+}
+
+.playstation:hover > a,
+.playstation.active > a {
+    border-color: #003791;
 }
 /*Dropdown*/
 .dropdown-menu {

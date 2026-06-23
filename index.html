@@ -39,25 +39,25 @@ License: You must have a valid license from official store to legally use the th
      <nav class="bg-black">
         <div class="xl:container mx-auto px-3 sm:px-4 xl:px-2">
           <div class="flex justify-between">
-            <div class="mx-w-10 text-2xl font-bold capitalize text-white flex items-center">The Daily Respawn</div>
+            <div class="mx-w-10 text-3xl font-bold capitalize text-white flex items-center">The Daily Respawn</div>
             
             <div class="flex flex-row">
               <!-- nav menu -->
-              <ul class="navbar hidden lg:flex lg:flex-row text-gray-400 text-sm items-center font-bold">
-                <li class="active relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#seccion_steam">Steam</a>
+              <ul class="navbar hidden lg:flex lg:flex-row text-gray-300 text-base items-center font-bold">
+                <li class="steam active relative border-l border-gray-800 hover:bg-gray-900">
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_steam">Steam</a>
+                </li>
+                <li class="nintendo relative border-l border-gray-800 hover:bg-gray-900">
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_nintendo">Nintendo</a>
+                </li>
+                <li class="xbox relative border-l border-gray-800 hover:bg-gray-900">
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_xbox">Xbox</a>
+                </li>
+                <li class="playstation relative border-l border-gray-800 hover:bg-gray-900">
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#seccion_playstation">PlayStation</a>
                 </li>
                 <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#seccion_nintendo">Nintendo</a>
-                </li>
-                <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#seccion_xbox">Xbox</a>
-                </li>
-                <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#seccion_playstation">PlayStation</a>
-                </li>
-                <li class="relative border-l border-gray-800 hover:bg-gray-900">
-                  <a class="block py-3 px-6 border-b-2 border-transparent" href="#novedades">Novedades</a>
+                  <a class="block py-4 px-6 border-b-2 border-transparent" href="#novedades">Novedades</a>
                 </li>
               </ul>
 
@@ -153,7 +153,7 @@ License: You must have a valid license from official store to legally use the th
           <div class="overflow-hidden">
             <div class="w-full py-3">
               <h2 class="text-gray-800 text-2xl font-bold">
-                <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Steam
+                <span class="inline-block h-5 border-l-4 border-l-[#1B2838] mr-2"></span>Steam
               </h2>
             </div>
             <div id="container_noticias_steam" class="flex flex-row flex-wrap -mx-3">
@@ -173,7 +173,7 @@ License: You must have a valid license from official store to legally use the th
             <div class="flex-shrink max-w-full w-full py-12 overflow-hidden">
               <div class="w-full py-3">
                 <h2 class="text-white text-2xl font-bold text-shadow-black">
-                  <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Nintendo
+                  <span class="inline-block h-5 border-l-4 border-l-[#E60012] mr-2"></span>Nintendo
                 </h2>
               </div>
               <div id="container_noticias_nintendo" class="flex flex-row flex-wrap">
@@ -193,7 +193,7 @@ License: You must have a valid license from official store to legally use the th
           <div class="flex-shrink max-w-full w-full overflow-hidden">
             <div class="w-full py-3">
               <h2 class="text-gray-800 text-2xl font-bold">
-                <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>Xbox
+                <span class="inline-block h-5 border-l-4 border-l-[#107C10] mr-2"></span>Xbox
               </h2>
             </div>
             <div id="container_noticias_xbox" class="flex flex-row flex-wrap -mx-3">
@@ -214,7 +214,7 @@ License: You must have a valid license from official store to legally use the th
           <div class="flex-shrink max-w-full w-full lg:w-full  overflow-hidden">
             <div class="w-full py-3">
               <h2 class="text-gray-800 text-2xl font-bold">
-                <span class="inline-block h-5 border-l-3 border-red-600 mr-2"></span>PlayStation
+                <span class="inline-block h-5 border-l-4 border-l-[#003791] mr-2"></span>PlayStation
               </h2>
             </div>
             <div id="container_noticias_ps" class="flex flex-row flex-wrap -mx-3">
@@ -238,7 +238,7 @@ License: You must have a valid license from official store to legally use the th
             ¡Entérate de las últimas noticias, actualizaciones de videojuegos y cambios que se producen en la comunidad gaming!
           </p>
         </div>
-        <form action="#" class="mx-auto mt-6 lg:w-1/2">
+        <form id="newsletter_form" action="#" class="mx-auto mt-6 lg:w-1/2">
           <div>
             <div class="max-w-full w-full px-2 pb-3">
               <label for="usuario" class="sr-only">
@@ -249,6 +249,9 @@ License: You must have a valid license from official store to legally use the th
                 id="usuario"
                 name="usuario"
                 placeholder="Ingrese su Gametag"
+                minlength="3"
+                maxlength="20"
+                required
                 class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
               >
             </div>
@@ -261,6 +264,7 @@ License: You must have a valid license from official store to legally use the th
                 id="email"
                 name="email"
                 placeholder="Ingrese su correo electrónico"
+                required
                 class="w-full py-3 px-4 bg-white border border-gray-300 rounded text-gray-800 focus:outline-none focus:border-gray-400"
               >
             </div>
@@ -312,7 +316,7 @@ License: You must have a valid license from official store to legally use the th
             <div class="max-w-full w-full px-2">
               <button
                 type="submit"
-                class="w-full py-3 px-4 font-bold text-white bg-gray-800 border border-transparent rounded hover:bg-gray-900 focus:outline-none"
+                class="w-full py-3 px-4 font-bold text-white bg-[#209CEE] border border-transparent rounded hover:bg-gray-900 focus:outline-none"
               >
                 Suscribirse
               </button>
