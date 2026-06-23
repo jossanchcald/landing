@@ -23,6 +23,24 @@ const mostrarSeccionSegunSuscripcion = () => {
 (() => {
     // Al cargar la página
     mostrarSeccionSegunSuscripcion();
+
+    document.getElementById('btn-cambiar-suscripcion').addEventListener('click', () => {
+        const datos = JSON.parse(localStorage.getItem('suscripcion') || 'null');
+    
+        if (datos) {
+          // Prellenar campos de texto
+          document.getElementById('usuario').value = datos.usuario;
+          document.getElementById('email').value = datos.email;
+      
+          // Desmarcar todos los checkboxes primero (por si cambiaron antes)
+          document.querySelectorAll('input[name="intereses[]"]').forEach(checkbox => {
+            checkbox.checked = datos.intereses.includes(checkbox.value);
+          });
+        }
+      
+        formSuscripcion.classList.remove('hidden');
+        containerSuscrito.classList.add('hidden')
+    });
 })();
 
 export {mostrarSeccionSegunSuscripcion}

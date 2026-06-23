@@ -278,24 +278,6 @@ let plantillaLiteralNoticiaPS = (noticia) => {
 let registrarUsuario = () => {
     const formulario = document.getElementById("newsletter_form");
 
-    document.getElementById('btn-cambiar-suscripcion').addEventListener('click', () => {
-        const datos = JSON.parse(localStorage.getItem('suscripcion') || 'null');
-    
-        if (datos) {
-          // Prellenar campos de texto
-          document.getElementById('usuario').value = datos.usuario;
-          document.getElementById('email').value = datos.email;
-      
-          // Desmarcar todos los checkboxes primero (por si cambiaron antes)
-          document.querySelectorAll('input[name="intereses[]"]').forEach(checkbox => {
-            checkbox.checked = datos.intereses.includes(checkbox.value);
-          });
-        }
-      
-        formState.classList.remove('hidden');
-        suscritoState.classList.add('hidden')
-    });
-
     formulario.addEventListener(
         "submit",
         registrarSuscriptor
