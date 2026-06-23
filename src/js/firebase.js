@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
 import { getDatabase, ref, set, push, get, child } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-database.js";
+const BASE_URL = "https://landing-4f0eb-default-rtdb.firebaseio.com/suscriptores";
 
 const firebaseConfig = {
     apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -71,60 +72,35 @@ let obtenerArregloNoticiasCarousel = async () => {
     }
 }
 
-async function registrarSuscriptor(evento) {
+const registrarSuscriptor = async (suscriptor) => {
+    const respuesta = await fetch(`${BASE_URL}.json`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(suscriptor)
+    });
 
-    evento.preventDefault();
-  
-    const datos = new FormData(evento.target);
-  
-    const usuario = datos.get("usuario");
-    const email = datos.get("email");
-    const frecuencia = datos.get("frecuencia");
-    const frecuencia = datos.get("frecuencia");
-    const intereses = datos.getAll("intereses[]");
-  
-    if (intereses.length === 0) {
-        alert("Seleccione al menos un interés");
-        return;
-    }
-  
-    const suscriptor = {
-        usuario,
-        email,
-        frecuencia,
-        frecuencia,
-        intereses
-    };
-  
-    try {
-  
-        const respuesta = await fetch(
-            "https://landing-4f0eb-default-rtdb.firebaseio.com/suscriptores.json",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(suscriptor)
-            }
-        );
-  
-        if (!respuesta.ok) {
-            throw new Error("La respuesta HTTP fue fallida");
-        }
-  
-        alert("Suscripción realizada correctamente");
-  
-        localStorage.setItem('suscripcion', JSON.stringify({ usuario, email, intereses }));
-        mostrarSeccionSegunSuscripcion();
-        evento.target.reset();
-  
-    } catch (error) {
-  
-        console.log(error);
-        alert("No se pudo realizar la suscripción");
-  
-    }
-}
+    if (!respuesta.ok) throw new Error("La respuesta HTTP fue fallida");
 
-export { obtenerArregloNoticias, obtenerArregloNoticiasCarousel, registrarSuscriptor }
+    const data = await respuesta.json();
+    return data.name; // Firebase devuelve una key unica q necesitamos si queremos luego eliminar
+};
+
+const actualizarSuscriptor = async (key, suscriptor) => {
+    const respuesta = await fetch(`${BASE_URL}/${key}.json`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(suscriptor)
+    });
+
+    if (!respuesta.ok) throw new Error("No se pudo actualizar la suscripción");
+};
+
+const eliminarSuscriptor = async (key) => {
+    const respuesta = await fetch(`${BASE_URL}/${key}.json`, {
+        method: "DELETE"
+    });
+
+    if (!respuesta.ok) throw new Error("No se pudo eliminar la suscripción");
+};
+
+export { obtenerArregloNoticias, obtenerArregloNoticiasCarousel, registrarSuscriptor, actualizarSuscriptor, eliminarSuscriptor }
