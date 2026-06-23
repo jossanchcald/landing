@@ -159,7 +159,7 @@ let mostrarNoticiasPlaystation = async () => {
 
 let plantillaLiteralNoticias = (noticia) => {
     return `
-        <div class="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+        <article class="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
             <div class="flex flex-row sm:block hover-img">
 
                 <a>
@@ -189,13 +189,13 @@ let plantillaLiteralNoticias = (noticia) => {
                 </div>
 
             </div>
-        </div>`;
+        </article>`;
 };
 
 let plantillaLiteralNoticiaBgWhite = (noticia) => {
 
     return `
-        <div class="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+        <article class="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
 
             <div class="rounded-md bg-white flex flex-row sm:block hover-img">
 
@@ -227,12 +227,12 @@ let plantillaLiteralNoticiaBgWhite = (noticia) => {
 
             </div>
 
-        </div>`;
+        </article>`;
 }
 
 let plantillaLiteralNoticiaXbox = (noticia) => {
     return `
-        <div class="flex-shrink max-w-full w-full sm:w-1/3 lg:w-1/4 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
+        <article class="flex-shrink max-w-full w-full sm:w-1/3 lg:w-1/4 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
             <div class="flex flex-row sm:block hover-img">
                 <a>
                     <img class="rounded-md max-w-full w-full mx-auto" src="/src/img/noticias/${noticia.imagen}" alt="${noticia.titulo}">
@@ -250,13 +250,13 @@ let plantillaLiteralNoticiaXbox = (noticia) => {
                     </span>
                 </div>
             </div>
-        </div>`;
+        </article>`;
 };
 
 // Plantilla para la noticia destacada (grande, con imagen de fondo)
 let plantillaLiteralNoticiaDestacadaPS = (noticia) => {
     return `
-        <div class="flex-shrink max-w-full w-full px-3 pb-5">
+        <article class="flex-shrink max-w-full w-full px-3 pb-5">
             <div class="relative hover-img max-h-98 overflow-hidden">
                 <a>
                     <img class="rounded-md max-w-full w-full mx-auto h-auto" src="src/img/noticias/${noticia.imagen}" alt="${noticia.titulo}">
@@ -273,7 +273,7 @@ let plantillaLiteralNoticiaDestacadaPS = (noticia) => {
                     </div>
                 </div>
             </div>
-        </div>`;
+        </article>`;
 };
 
 // Plantilla para las noticias pequeñas
