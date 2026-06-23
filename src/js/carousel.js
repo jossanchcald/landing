@@ -80,5 +80,5 @@ const initCarousel = async () => {
     splide.mount();
 };
 
-initCarousel();
+export {initCarousel}
 
