@@ -157,7 +157,7 @@ let plantillaLiteralNoticias = (noticia) => {
                     </p>
 
                     <span class="text-gray-500">
-                        <span class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                        <span class="inline-block h-3 border-l-3 border-red-600 mr-2"></span>
                         ${noticia.fecha}
                     </span>
 
@@ -177,7 +177,7 @@ let plantillaLiteralNoticiaBgWhite = (noticia) => {
                 <a href="#">
                     <img
                         class="rounded-md max-w-full w-full mx-auto"
-                        src="src/img/noticias/${noticia.imagen}"
+                        src="/src/img/noticias/${noticia.imagen}"
                         alt="${noticia.titulo}">
                 </a>
 
@@ -194,7 +194,7 @@ let plantillaLiteralNoticiaBgWhite = (noticia) => {
                     </p>
 
                     <span class="text-gray-500">
-                        <span class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                        <span class="inline-block h-3 border-l-3 border-red-600 mr-2"></span>
                         ${noticia.fecha}
                     </span>
 
@@ -220,7 +220,7 @@ let plantillaLiteralNoticiaXbox = (noticia) => {
                         ${noticia.descripcion}
                     </p>
                     <span class="text-gray-500">
-                        <span class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                        <span class="inline-block h-3 border-l-3 border-red-600 mr-2"></span>
                         ${noticia.fecha}
                     </span>
                 </div>
@@ -243,7 +243,7 @@ let plantillaLiteralNoticiaDestacadaPS = (noticia) => {
                     <p class="text-gray-100 hidden sm:inline-block">${noticia.descripcion}</p>
                     <div class="pt-2">
                         <div class="text-gray-100">
-                            <div class="inline-block h-3 border-l-2 border-red-600 mr-2"></div>${noticia.fecha}
+                            <div class="inline-block h-3 border-l-3 border-red-600 mr-2"></div>${noticia.fecha}
                         </div>
                     </div>
                 </div>
@@ -267,7 +267,7 @@ let plantillaLiteralNoticiaPS = (noticia) => {
                         ${noticia.descripcion}
                     </p>
                     <span class="text-gray-500">
-                        <span class="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
+                        <span class="inline-block h-3 border-l-3 border-red-600 mr-2"></span>
                         ${noticia.fecha}
                     </span>
                 </div>
@@ -275,12 +275,60 @@ let plantillaLiteralNoticiaPS = (noticia) => {
         </div>`;
 };
 
+let registrarUsuario = () => {
+    const formulario = document.getElementById("newsletter_form");
+
+    formulario.addEventListener(
+        "submit",
+        registrarSuscriptor
+    );
+}
+
+async function registrarSuscriptor(evento) {
+    evento.preventDefault();
+
+    const datos = new FormData(evento.target);
+
+    const usuario = datos.get("usuario");
+    const email = datos.get("email");
+    const intereses = datos.getAll("intereses[]");
+
+    if (intereses.length === 0) {
+
+        alert("Seleccione al menos un interés");
+
+        return;
+
+    }
+
+    const suscriptor = {
+        usuario,
+        email,
+        intereses
+    };
+    try {
+
+        await push(
+            ref(database, "suscriptores"),
+            suscriptor
+        );
+
+        alert("Suscripción realizada correctamente");
+        evento.target.reset();
+    } catch (error) {
+
+        console.error(error);
+        alert("No se pudo realizar la suscripcion :(");
+
+    }
+}
 
 (() => {
     mostrarNoticiasSteam();
     mostrarNoticiasNintendo();
     mostrarNoticiasXbox();
     mostrarNoticiasPlaystation();
+    registrarUsuario();
 })();
 
-export {obtenerArregloNoticiasCarousel}
+export { obtenerArregloNoticiasCarousel }
