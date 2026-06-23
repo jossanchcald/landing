@@ -180,9 +180,6 @@
     if ( x != null) {
       for (var v = 0; v < x.length; v++) {
         x[v].addEventListener("click", function(){
-
-          console.log("CERRANDO MENU");
-
           var y = document.getElementsByClassName("side-menu");
           for (var i = 0; i < y.length; i++) {
             y[i].classList.remove('show');
