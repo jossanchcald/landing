@@ -122,21 +122,6 @@
     }
   }
 
-  // Sticky element
-  const mySticky = function () {
-    // sticky
-    var stickys = document.querySelectorAll('.sticky');
-    if ( stickys !=null) {
-      for (var i = 0; i < stickys.length; i++) {
-        new hcSticky(stickys[i], {
-          stickTo: stickys[i].parentNode,
-          top: 28,
-          bottomEnd: 0
-        });
-      }
-    }
-  }
-
   // Sub Dropdown
   const myDropdown = function () {
     // submenu
@@ -195,6 +180,9 @@
     if ( x != null) {
       for (var v = 0; v < x.length; v++) {
         x[v].addEventListener("click", function(){
+
+          console.log("CERRANDO MENU");
+
           var y = document.getElementsByClassName("side-menu");
           for (var i = 0; i < y.length; i++) {
             y[i].classList.remove('show');
@@ -229,81 +217,6 @@
     }
   }
 
-  // Lightbox
-  const myLightbox = function () {
-    // GLightbox
-    const lightbox_class = document.querySelector(".glightbox3");
-    if ( lightbox_class != null) {
-      const lightbox = GLightbox({
-        selector: '.glightbox3',
-        touchNavigation: true,
-        loop: true,
-        autoplayVideos: true
-      });
-    }
-  }
-
-  // splidejs
-  const mySplidejs = function () {
-    // mySplidejs
-    const postslider_class = document.querySelector("#post-carousel");
-    if ( postslider_class != null) {
-        const postslider = new Splide( postslider_class, {
-          rewind    : true,
-          pagination: true,
-          arrows    : true,
-          type   : 'loop',
-          drag   : 'free',
-          perPage: 3,
-          perMove     : 1,
-          gap      : 24,
-          breakpoints: {
-            768: {
-              perPage: 2,
-            },
-            500: {
-              perPage: 1,
-            },
-          }
-        } );
-        postslider.mount();
-      }
-  }
-
-  // splide video
-  const mySplidevideo = function () {
-    // mySplidevideo
-    const postvideo_class = document.querySelector("#main-carousel");
-    if ( postvideo_class != null) {
-      const postvideo = new Splide( '#main-carousel', {
-        type      : 'fade',
-        rewind    : true,
-        pagination: false,
-        arrows    : false,
-      } );
-
-      const thumbnails = new Splide( '#thumbnail-carousel', {
-        fixedWidth  : 150,
-        fixedHeight : 120,
-        gap         : 24,
-        rewind      : true,
-        pagination  : false,
-        isNavigation: true,
-      } );
-
-      postvideo.sync( thumbnails );
-      postvideo.mount( window.splide.Extensions );
-      thumbnails.mount();
-    }
-  }
-
-  // Custom JS
-  const myCustom = function () {
-    
-    // insert your javascript in here
-
-  }
-
   /**
    * ------------------------------------------------------------------------
    * Launch Functions
@@ -315,10 +228,4 @@
   myDropdown();
   myMobile();
   myOpen();
-  // myLightbox(); No se usa
-  // mySplidejs(); Seccion de America no lleva carousel
-  // mySplidevideo(); Seccion de America no lleva carousel
-  myCustom();
-  // mySticky(); No se usa (publicidad)
-
 })();

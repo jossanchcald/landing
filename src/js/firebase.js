@@ -15,6 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+/* Código anterior utilizando Firebase SDK:
 let obtenerArregloNoticias = async () => {
     try {
         const snapshot = await get(
@@ -29,8 +30,32 @@ let obtenerArregloNoticias = async () => {
     } catch (error) {
         console.log(error);
     }
+} */
+
+let obtenerArregloNoticias = async () => {
+    try {
+
+        // HTTP GET utilizando fetch()
+        const respuesta = await fetch(
+            "https://landing-4f0eb-default-rtdb.firebaseio.com/noticias.json"
+        );
+
+        if (!respuesta.ok) {
+            throw new Error("Error al obtener las noticias");
+        }
+
+        const datos = await respuesta.json();
+
+        return Object.values(datos);
+
+    } catch (error) {
+
+        console.log(error);
+
+    }
 }
 
+// Aqui usa el Firebase SDK
 let obtenerArregloNoticiasCarousel = async () => {
     try {
         const snapshot = await get(
@@ -285,6 +310,7 @@ let registrarUsuario = () => {
 }
 
 async function registrarSuscriptor(evento) {
+
     evento.preventDefault();
 
     const datos = new FormData(evento.target);
@@ -296,7 +322,6 @@ async function registrarSuscriptor(evento) {
     if (intereses.length === 0) {
 
         alert("Seleccione al menos un interés");
-
         return;
 
     }
@@ -306,19 +331,31 @@ async function registrarSuscriptor(evento) {
         email,
         intereses
     };
+
     try {
 
-        await push(
-            ref(database, "suscriptores"),
-            suscriptor
+        const respuesta = await fetch(
+            "https://landing-4f0eb-default-rtdb.firebaseio.com/suscriptores.json",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(suscriptor)
+            }
         );
+
+        if (!respuesta.ok) {
+            throw new Error("La respuesta HTTP fue fallida");
+        }
 
         alert("Suscripción realizada correctamente");
         evento.target.reset();
+
     } catch (error) {
 
-        console.error(error);
-        alert("No se pudo realizar la suscripcion :(");
+        console.log(error);
+        alert("No se pudo realizar la suscripción");
 
     }
 }
