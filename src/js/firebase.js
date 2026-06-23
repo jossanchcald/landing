@@ -317,6 +317,7 @@ async function registrarSuscriptor(evento) {
 
     const usuario = datos.get("usuario");
     const email = datos.get("email");
+    const frecuencia = datos.get("frecuencia");
     const intereses = datos.getAll("intereses[]");
 
     if (intereses.length === 0) {
@@ -327,6 +328,7 @@ async function registrarSuscriptor(evento) {
     const suscriptor = {
         usuario,
         email,
+        frecuencia,
         intereses
     };
 
